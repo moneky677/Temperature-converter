@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewporrt" content="width=device-width , initial-scale=1.0">
+        <title>Temperature converter</title>
+        <style>
+            body{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .main{
+                border: black 2.5px solid;
+                text-align: center;
+                width: 600px;
+                height: 650px;
+                background-color: rgb(234, 237, 236);
+                border-radius: 25px;    
+            }
+            #title{
+                text-align: center;
+                font-size: 2em;
+            }
+            #title:hover{
+                color: lightblue;
+            }
+            .display{
+                border: 2px solid black;
+                margin-left: 200px;
+                width: 200px;
+                height: 150px;
+                text-align: center;
+                font-size: 2.5em;
+                border-radius: 20px;
+                background-color: white;
+            }
+            .display:hover {
+                background-color: rgb(232, 62, 62);
+            }
+            .display p:hover{
+                color: rgb(21, 211, 228);
+            }
+            .tempdisplay{
+                font-size: 2em;
+            }
+            .tempdisplay:hover{
+                color: #b00b69;
+            }
+            #temp{
+                padding: 5px 12px;
+                border-radius: 99999px;
+            }
+            #cf, #cflabel{
+                font-size: x-large;
+            }
+            #cflabel:hover{
+                color: aqua;
+            }
+            #fc, #fclabel{
+                font-size: x-large;
+            }
+            #fclabel:hover{
+                color: red;
+            }
+            button{
+                padding: 15px 20px;
+                border-radius: 9999px;
+                border: #b00b69 solid 2px;
+                background-color: aliceblue;
+            }
+            button:hover{
+                background-color: rgb(224, 237, 249);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <p id="title">Termperature Converter</p>
+            <div class="display"><p id="temperature">20°C</p></div>
+            <br>
+            <br>
+            <label for="temp" class="tempdisplay">Temperature:</label>
+            <br>
+            <input type="number" id="temp" placeholder="Temperature here...">
+            <br>
+            <br>
+            <input type="radio" name="convert" id="cf">
+            <label for="cf" id="cflabel">Celcius to Fahrenheit</label>
+            <br>
+            <br>
+            <input type="radio" name="convert" id="fc">
+            <label for="fc" id="fclabel">Fahrenheit to Celcius</label>
+            <br>
+            <br>
+            <button id="submit">Submit</button>
+            <br>
+            <br>
+            <br>
+            <p id="note"></p>
+        </div>
+        <script>
+            let t1,t2;
+            let CF = document.getElementById("cf");
+            let FC = document.getElementById("fc");
+            function cf(){
+                t1 = document.getElementById("temp").value;
+                t2 = (Number(t1) * 1.8) + 32;
+                document.getElementById("temperature").textContent = t2.toFixed(2) + "°F";
+                return;
+            }
+            function fc(){
+                t1 = document.getElementById("temp").value;
+                t2 = (Number(t1) - 32) / 1.8;
+                document.getElementById("temperature").textContent = t2.toFixed(2) + "°C"; 
+                return;
+            }
+            function result(){
+                if (CF.checked){
+                    cf();
+                    return;
+                }
+                else if (FC.checked){
+                    fc();
+                    return;
+                }
+                else{
+                    document.getElementById("note").textContent = "Pls select a conversion."
+                }
+            }
+            document.getElementById("submit").onclick = result;
+        </script>
+    </body>
+</html>
